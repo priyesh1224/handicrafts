@@ -1,4 +1,4 @@
-</!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	<title> Sign up</title>
@@ -17,7 +17,7 @@
 
 
 
-		var temp = false;
+		var temp = true;
 
 	
 	var email = document.getElementById("email").value;
@@ -38,11 +38,13 @@
 			alert("Invalid mobile number");
 		}else {
 			var check = false;
+			console.log("hey");
 			firebase.auth().createUserWithEmailAndPassword(email, pass).catch(function(error) {
 				check = true;
- 						 // Handle Errors here.
+				console.log("wassup");
+ 						
  						 temp = true;
- 						 console.log("%%%%%%%%%"+ email);
+ 						 
  						 var errorCode = error.code;
   						var errorMessage = error.message;
   						alert(" Signup failed");
@@ -55,19 +57,23 @@
   							alert("Account with this email already exist. Try login with this email");
   						}
   						// window.location.href = "signup.php";
-
-
   						return;
+
+
+  						
   // ...
 			});
 
-			var curruser = firebase.auth()
+			
+			
 
-
-			firebase.auth().onAuthStateChanged(function (user) {
+	firebase.auth().onAuthStateChanged(function(user) {
 		if (user)
 		{
-			console.log("user is signed in with uid "+user.displayName);
+			
+
+			console.log("user is signed and entered in with uid "+user.displayName);
+
 			if(user.displayName === null)
 			{
 				user.updateProfile({
@@ -83,27 +89,40 @@
    					 zip : "",
    					 contact : ""
  					 });
+
+				user.sendEmailVerification().then(function(){
+
+
+				}) .catch (function(error){
+					alert("Email Could not be sent,Kindly contact us.");
+				})
+				firebase.database().ref(/users/ + uid).on('child_added',function(data){
+						//window.location.href = "products.php";
+				});
 			}
 
-			window.location.href = "products.php";
+			
+			alert(suc); 
 			
 			}else {
 				console.log("no user is logged in");
 			}
-
-
 		});
+
+
+		
 			
 
 			
 					if(temp === false) 
 					{
-   							alert(suc); 
+   							
 							console.log(firebase.auth().currentUser.email + "^^^^^^^^^^^");
 					}
 
 
-			
+					
+					console.log("reached end");
 			
 		}
 	}

@@ -59,6 +59,10 @@ require_once('connection.php');
 			firebase.auth().onAuthStateChanged(function(user) {
 
 			if(user) {
+				console.log("user exist"+user.email);
+								console.log("user exist"+user.uid);
+
+
 
 				firebase.database().ref('/users/'+ user.uid).once('value').then(function(snapshot){
 						var username = snapshot.val().username;
@@ -68,6 +72,7 @@ require_once('connection.php');
 						}else {
 							document.getElementById("welcome").innerHTML = "Welcome "+username;
 						}
+
 
 				});
 			// 	if(user.displayName === null)
@@ -79,6 +84,9 @@ require_once('connection.php');
 
 			// 	document.getElementById("welcome").innerHTML = "Welcome "+user.displayName;
 			// }
+			}else {
+				console.log("user does not exist");
+				document.getElementById("welcome").innerHTML = "Not Signed in ";
 			}
 		});
 

@@ -41,12 +41,9 @@
 	</form>
 	<script>
 
-	var user = firebase.auth().currentUser;
-		if(user !== null) {
-	console.log(user.uid);
-}
-	//
+	
 firebase.auth().onAuthStateChanged(function (user) {
+	console.log("update");
 		
 		if(user) {
 			firebase.database().ref('/users/'+ firebase.auth().currentUser.uid).once('value').then(function(snapshot){

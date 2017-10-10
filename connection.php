@@ -1,18 +1,4 @@
-<?php
-
-
- $connection = mysqli_connect("127.0.0.1" , "root" ,"NVIDIA210","handicrafts");
-if(!$connection)
-{
-	die("Could not connect");
-	}else {
-
-	}
-
-	?>
-
-
-	<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
 <script>
   // Initialize Firebase
   var config = {
